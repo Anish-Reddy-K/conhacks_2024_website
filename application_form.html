@@ -6,13 +6,14 @@
     <title>Application - ConHacks 2024</title>
     <link rel="stylesheet" href="https://unpkg.com/nes.css/css/nes.min.css">
     <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css">    
     <style>
         body {
             margin: 30px;
-            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('bg.gif');
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('background.gif');
             background-size: cover; 
             background-position: center center; 
+            background-attachment: fixed;
             height: 100vh;
         }
         .form-container {
@@ -25,56 +26,85 @@
         .nes-field {
             margin-bottom: 70px; 
         }  
-        .nes-field.is-error input,
-        .nes-field.is-error select {
-            border-color: red;
-        }
-        .error-message {
-            color: red;
-            font-size: 12px;
-            display: none;
-        } 
-
-        /* Custom CSS */
         .nes-radio:checked + span {
             background-color: #dc0fc4; 
             color: #fff; 
         }
-
         .nes-radio-group label {
             margin-right: 80px;
         }
-
         label.title {
             background-color: #dc0fc4 !important;
             color: #000000; 
             display: inline-block; 
         }
-
         .nes-btn.is-primary {
-            background-color: #dc0fc4; /* Change to your desired color */
-            color: white; /* Text color */
+            background-color: #dc0fc4; 
+            color: white; /
         }
-
         .nes-btn.is-primary:hover {
-            background-color: #be10a9; /* Darker color when hovered */
+            background-color: #be10a9; 
         }
-
         .center-button {
             display: block;
             margin: auto;
         }
+        .required {
+            color: rgb(0, 242, 255);
+            margin-left: 5px; 
+            position: relative;
+        }.required-description {
+            margin-bottom: 15px; 
+        }
+        .required sup {
+            position: absolute;
+            top: -0.5em;
+            right: -0.5em; 
+            font-size: 0.7em; 
+            color: red;
+        }
+        #email-validation-msg {
+            color: rgb(255, 0, 0); 
+            font-size: 12px;
+            display: block;
+        }
     </style>
 </head>
 <body>
+    
+    <div class="nes-container with-title form-container">
+        <label class="title" for="title">ConHacks 2024 Application Form</label>
+        
+        <div class="required-description">
+            <sup class="required">* Indicates required question</sup>
+        </div>
 
-<div class="nes-container with-title form-container">
-    <label class="title" for="title">ConHacks 2024 Application Form</label>
-
+    <!-- Email -->
     <div class="nes-field">
-        <label for="first_name">First Name</label>
+        <label for="email">Email<sup class="required">*</sup></label>
+        <input type="email" id="email" class="nes-input" required oninput="validateEmail()">
+        <span id="email-validation-msg"></span>
+    </div>
+
+    <script>
+        function validateEmail() {
+            const emailInput = document.getElementById('email');
+            const emailMsg = document.getElementById('email-validation-msg');
+        
+            if (emailInput.validity.valid) {
+                emailMsg.textContent = '';
+                emailInput.classList.remove('invalid');
+            } else {
+                emailMsg.textContent = 'Please enter a valid email';
+                emailInput.classList.add('invalid');
+            }
+        }
+    </script>
+
+    <!-- First Name -->
+    <div class="nes-field">
+        <label for="first_name">First Name<sup class="required">*</sup></label>
         <input type="text" id="first_name" class="nes-input" required>
-        <span class="error-message">First Name is required</span>
     </div>
 
     <!-- Last Name -->
@@ -85,46 +115,14 @@
 
     <!-- Age -->
     <div class="nes-field">
-        <label for="age">Age</label>
+        <label for="age">Age<sup class="required">*</sup></label>
         <input type="number" id="age" class="nes-input" required>
-        <span class="error-message">Age is required</span>
-    </div>
-
-    <!-- Resume -->
-    <div class="nes-field">
-        <label for="resume">Upload Resume</label>
-        <label class="nes-btn">
-            <span>Select your resume</span>
-            <input type="file">
-        </label>
-    </div>
-
-
-    <!-- Email -->
-    <div class="nes-field">
-        <label for="email">Email</label>
-        <input type="email" id="email" class="nes-input" required>
-        <span class="error-message">Email is required</span>
     </div>
 
     <!-- Phone Number -->
     <div class="nes-field">
-        <label for="phone_number">Phone Number</label>
+        <label for="phone_number">Phone Number<sup class="required">*</sup></label>
         <input type="tel" id="phone_number" class="nes-input" required>
-        <span class="error-message">Phone Number is required</span>
-    </div>
-
-    <!-- School -->
-    <div class="nes-field">
-        <label for="school">School</label>
-        <div class="nes-select">
-            <select required id="school">
-                <option value="" disabled selected hidden>Select your school</option>
-                <option value="school1">School 1</option>
-                <option value="school2">School 2</option>
-                <option value="school3">School 3</option>
-            </select>
-        </div>
     </div>
 
     <!-- Level of Study -->
@@ -144,9 +142,65 @@
         </div>
     </div>
 
+    <!-- School -->
+    <div class="nes-field">
+        <label for="school">School</label>
+        <div class="nes-select">
+            <select required id="school">
+                <option value="" disabled selected hidden>Select your school</option>
+                <option value="school1">School 1</option>
+                <option value="school2">School 2</option>
+                <option value="school3">School 3</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- Field of Study -->
+    <div class="nes-field">
+        <label for="field_of_study">Field of Study</label>
+        <div class="nes-select">
+            <select required id="field_of_study">
+                <option value="" disabled selected hidden>Select your field of study</option>
+                <option value="field1">Option 1</option>
+                <option value="field2">Option 2</option>
+                <option value="field3">Option 3</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- First Time Participant -->
+    <div class="nes-field">
+        <label>Is this your first time participating in a Hackathon?</label>
+        <div class="nes-radio-group">
+            <label><input type="radio" class="nes-radio" name="first_time" value="yes"><span>Yes</span></label>
+            <label><input type="radio" class="nes-radio" name="first_time" value="no" checked><span>No</span></label>
+        </div>
+    </div>
+
+    <!-- LinkedIn -->
+    <div class="nes-field">
+        <label for="linkedin">LinkedIn Profile (Optional)</label>
+        <input type="url" id="linkedin" class="nes-input" placeholder="https://www.linkedin.com/in/yourusername">
+    </div>
+
+    <!-- GitHub -->
+    <div class="nes-field">
+        <label for="github">GitHub (Optional)</label>
+        <input type="url" id="github" class="nes-input" placeholder="https://github.com/yourusername">
+    </div>
+
+    <!-- Resume -->
+    <div class="nes-field">
+        <label for="resume">Resume (Optional)</label>
+        <label class="nes-btn">
+            <span>Upload your resume</span>
+            <input type="file">
+        </label>
+    </div>
+
     <!-- Country of Residence -->
     <div class="nes-field">
-        <label for="country">Country of Residence</label>
+        <label for="country">Country of Residence<sup class="required">*</sup></label>
         <div class="nes-select">
             <select required id="country">
                 <option value="" disabled selected hidden>Select your country</option>
@@ -181,67 +235,28 @@
     <!-- Pronouns -->
     <div class="nes-field">
         <label>Pronouns</label>
-        <label><input type="radio" class="nes-radio" name="pronouns" checked/><span>She/Her</span></label>
-        <label><input type="radio" class="nes-radio" name="pronouns" /><span>He/Him</span></label>
-        <label><input type="radio" class="nes-radio" name="pronouns" /><span>They/Them</span></label>
-        <label><input type="radio" class="nes-radio" name="pronouns" /><span>She/They</span></label>
-        <label><input type="radio" class="nes-radio" name="pronouns" /><span>He/They</span></label>
-        <label><input type="radio" class="nes-radio" name="pronouns" /><span>Prefer Not to Answer</span></label>
-        <label><input type="radio" class="nes-radio" name="pronouns" /><span>Other (Please specify)</span></label>
+        <input type="text" class="nes-input" id="other-pronouns-text" placeholder="Enter your pronouns">
     </div>
 
-    <!-- Country of Residence -->
+    <!-- Shirt size-->
     <div class="nes-field">
-        <label for="field_of_study">Field of Study</label>
-        <div class="nes-select">
-            <select required id="field_of_study">
-                <option value="" disabled selected hidden>Select your field of study</option>
-                <option value="country1">Option 1</option>
-                <option value="country2">Option 2</option>
-                <option value="country3">Option 3</option>
-            </select>
-        </div>
-    </div>
-
-    <!-- Tshirt -->
-    <div class="nes-field">
-        <label>T-shirt Size</label>
+        <label>Shirt Size<sup class="required">*</sup></label>
         <div class="nes-radio-group">
-            <label><input type="radio" class="nes-radio" name="tshirt" checked><span>S</span></label>
-            <label><input type="radio" class="nes-radio" name="tshirt"><span>M</span></label>
-            <label><input type="radio" class="nes-radio" name="tshirt"><span>L</span></label>
-            <label><input type="radio" class="nes-radio" name="tshirt"><span>XL</span></label>
-            <label><input type="radio" class="nes-radio" name="tshirt"><span>XXL</span></label>
+            <label><input type="radio" class="nes-radio" name="shirt" checked><span>S</span></label>
+            <label><input type="radio" class="nes-radio" name="shirt"><span>M</span></label>
+            <label><input type="radio" class="nes-radio" name="shirt"><span>L</span></label>
+            <label><input type="radio" class="nes-radio" name="shirt"><span>XL</span></label>
+            <label><input type="radio" class="nes-radio" name="shirt"><span>XXL</span></label>
         </div>
     </div>
 
     <!-- Submit Button -->
-    <button type="submit" class="nes-btn is-primary center-button" onclick="validateForm(event)">Submit</button>
+    <button type="submit" class="nes-btn is-primary center-button">Submit</button>
+
 </div>
-
-<script>
-function validateForm(event) {
-    event.preventDefault();
-    let isValid = true;
-    const fields = document.querySelectorAll('.nes-input, .nes-select select, .nes-radio:required');
-    fields.forEach(field => {
-        const parent = field.closest('.nes-field');
-        const errorMessage = parent.querySelector('.error-message');
-        if (!field.value) {
-            parent.classList.add('is-error');
-            if (errorMessage) errorMessage.style.display = 'block';
-            isValid = false;
-        } else {
-            parent.classList.remove('is-error');
-            if (errorMessage) errorMessage.style.display = 'none';
-        }
-    });
-
-    if (isValid) {
-        document.getElementById('dialog-default').showModal();
-    }
-}
-</script>
-
 </body>
 </html>
+
+<!-- TODO: -->
+<!-- checks for empty fields -->
+<!-- other (please specify) - text field -->
