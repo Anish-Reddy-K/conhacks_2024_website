@@ -1,0 +1,39 @@
+html, body, pre, code, kbd, samp {
+    font-family: 'Press Start 2P', cursive;
+}
+body {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    margin: 0;
+    background-color: #f1f1f1;
+    overflow-y: scroll;
+}
+.main-container {
+    text-align: center;
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+    background-color: transparent;
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    margin-bottom: 60px;
+}
+.nes-container-custom {
+    display: inline-flex;
+    background-color: #f0f0f0;
+}
+.nav-buttons {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.nav-buttons a {
+    margin: 0 10px;
+    padding: 4px 10px;
+}
