@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Application - ConHacks 2024</title>
+    <link rel="stylesheet" href="https://unpkg.com/nes.css/css/nes.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            margin: 20px;
+        }
+        .form-container {
+            max-width: 800px;
+            margin: auto;
+        }
+        .nes-field {
+            margin-bottom: 70px; 
+        }  
+        .nes-field.is-error input,
+        .nes-field.is-error select {
+            border-color: red;
+        }
+        .error-message {
+            color: red;
+            font-size: 12px;
+            display: none;
+        } 
+
+        /* Custom CSS */
+        .nes-radio:checked + span {
+            background-color: #000000; 
+            color: #fff; 
+        }
+
+        .nes-radio-group label {
+            margin-right: 80px;
+        }
+
+        label.title {
+            background-color: #000000 !important; /* Adjust background color */
+            color: #ffffff; /* Adjust text color */
+            display: inline-block; /* Ensure it behaves like a block with padding */
+        }
+    </style>
+</head>
+<body>
+
+<div class="nes-container with-title form-container">
+    <label class="title" for="title">ConHacks 2024 Application Form</label>
+
+    <div class="nes-field">
+        <label for="first_name">First Name</label>
+        <input type="text" id="first_name" class="nes-input" required>
+        <span class="error-message">First Name is required</span>
+    </div>
+
+    <!-- Last Name -->
+    <div class="nes-field">
+        <label for="last_name">Last Name</label>
+        <input type="text" id="last_name" class="nes-input">
+    </div>
+
+    <!-- Age -->
+    <div class="nes-field">
+        <label for="age">Age</label>
+        <input type="number" id="age" class="nes-input" required>
+        <span class="error-message">Age is required</span>
+    </div>
+
+    <!-- Resume -->
+    <div class="nes-field">
+        <label for="resume">Upload Resume</label>
+        <label class="nes-btn">
+            <span>Select your resume</span>
+            <input type="file">
+        </label>
+    </div>
+
+
+    <!-- Email -->
+    <div class="nes-field">
+        <label for="email">Email</label>
+        <input type="email" id="email" class="nes-input" required>
+        <span class="error-message">Email is required</span>
+    </div>
+
+    <!-- Phone Number -->
+    <div class="nes-field">
+        <label for="phone_number">Phone Number</label>
+        <input type="tel" id="phone_number" class="nes-input" required>
+        <span class="error-message">Phone Number is required</span>
+    </div>
+
+    <!-- School -->
+    <div class="nes-field">
+        <label for="school">School</label>
+        <div class="nes-select">
+            <select required id="school">
+                <option value="" disabled selected hidden>Select your school</option>
+                <option value="school1">School 1</option>
+                <option value="school2">School 2</option>
+                <option value="school3">School 3</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- Level of Study -->
+    <div class="nes-field">
+        <label for="level_of_study">Level of Study</label>
+        <div class="nes-select">
+            <select required id="level_of_study">
+                <option value="" disabled selected hidden>Select your level of study</option>
+                <option value="high_school">Secondary / High School</option>
+                <option value="undergrad_2_year">Undergraduate University (Bachelors)</option>
+                <option value="graduate">Graduate University (Masters, PhD)</option>
+                <option value="code_school">Code School / Bootcamp</option>
+                <option value="vocational">Other Vocational / Trade Program or Apprenticeship</option>
+                <option value="not_student">I’m not currently a student</option>
+                <option value="prefer_not">Prefer not to answer</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- Country of Residence -->
+    <div class="nes-field">
+        <label for="country">Country of Residence</label>
+        <div class="nes-select">
+            <select required id="country">
+                <option value="" disabled selected hidden>Select your country</option>
+                <option value="country1">Country 1</option>
+                <option value="country2">Country 2</option>
+                <option value="country3">Country 3</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- Dietary Restrictions -->
+    <div class="nes-field">
+        <label>Dietary Restrictions</label>
+        <label><input type="checkbox" class="nes-checkbox" /><span>Vegetarian</span></label>
+        <label><input type="checkbox" class="nes-checkbox" /><span>Vegan</span></label>
+        <label><input type="checkbox" class="nes-checkbox" /><span>Celiac Disease</span></label>
+        <label><input type="checkbox" class="nes-checkbox" /><span>Allergies</span></label>
+        <label><input type="checkbox" class="nes-checkbox" /><span>Kosher</span></label>
+        <label><input type="checkbox" class="nes-checkbox" /><span>Halal</span></label>
+    </div>
+
+    <!-- Gender -->
+    <div class="nes-field">
+        <label>Gender</label>
+        <label><input type="radio" class="nes-radio" name="gender" checked/><span>Man</span></label>
+        <label><input type="radio" class="nes-radio" name="gender" /><span>Woman</span></label>
+        <label><input type="radio" class="nes-radio" name="gender" /><span>Non-Binary</span></label>
+        <label><input type="radio" class="nes-radio" name="gender" /><span>Prefer to self-describe</span></label>
+        <label><input type="radio" class="nes-radio" name="gender" /><span>Prefer Not to Answer</span></label>
+    </div>
+
+    <!-- Pronouns -->
+    <div class="nes-field">
+        <label>Pronouns</label>
+        <label><input type="radio" class="nes-radio" name="pronouns" checked/><span>She/Her</span></label>
+        <label><input type="radio" class="nes-radio" name="pronouns" /><span>He/Him</span></label>
+        <label><input type="radio" class="nes-radio" name="pronouns" /><span>They/Them</span></label>
+        <label><input type="radio" class="nes-radio" name="pronouns" /><span>She/They</span></label>
+        <label><input type="radio" class="nes-radio" name="pronouns" /><span>He/They</span></label>
+        <label><input type="radio" class="nes-radio" name="pronouns" /><span>Prefer Not to Answer</span></label>
+        <label><input type="radio" class="nes-radio" name="pronouns" /><span>Other (Please specify)</span></label>
+    </div>
+
+    <!-- Country of Residence -->
+    <div class="nes-field">
+        <label for="field_of_study">Field of Study</label>
+        <div class="nes-select">
+            <select required id="field_of_study">
+                <option value="" disabled selected hidden>Select your field of study</option>
+                <option value="country1">Option 1</option>
+                <option value="country2">Option 2</option>
+                <option value="country3">Option 3</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- Tshirt -->
+    <div class="nes-field">
+        <label>T-shirt Size</label>
+        <div class="nes-radio-group">
+            <label><input type="radio" class="nes-radio" name="tshirt" checked><span>S</span></label>
+            <label><input type="radio" class="nes-radio" name="tshirt"><span>M</span></label>
+            <label><input type="radio" class="nes-radio" name="tshirt"><span>L</span></label>
+            <label><input type="radio" class="nes-radio" name="tshirt"><span>XL</span></label>
+            <label><input type="radio" class="nes-radio" name="tshirt"><span>XXL</span></label>
+        </div>
+    </div>
+
+    <!-- Submit Button -->
+    <button type="submit" class="nes-btn is-primary" onclick="validateForm(event)">Submit</button>
+</div>
+
+<!-- Dialog -->
+<section>
+    <dialog class="nes-dialog" id="dialog-default">
+      <form method="dialog">
+        <p class="title">Dialog</p>
+        <p>Form submitted successfully!</p>
+        <menu class="dialog-menu">
+          <button class="nes-btn">Close</button>
+        </menu>
+      </form>
+    </dialog>
+  </section>
+
+<script>
+function validateForm(event) {
+    event.preventDefault();
+    let isValid = true;
+    const fields = document.querySelectorAll('.nes-input, .nes-select select, .nes-radio:required');
+    fields.forEach(field => {
+        const parent = field.closest('.nes-field');
+        const errorMessage = parent.querySelector('.error-message');
+        if (!field.value) {
+            parent.classList.add('is-error');
+            if (errorMessage) errorMessage.style.display = 'block';
+            isValid = false;
+        } else {
+            parent.classList.remove('is-error');
+            if (errorMessage) errorMessage.style.display = 'none';
+        }
+    });
+
+    if (isValid) {
+        document.getElementById('dialog-default').showModal();
+    }
+}
+</script>
+
+</body>
+</html>
