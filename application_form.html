@@ -9,11 +9,18 @@
     <link rel="stylesheet" href="style.css">
     <style>
         body {
-            margin: 20px;
+            margin: 30px;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('bg.gif');
+            background-size: cover; 
+            background-position: center center; 
+            height: 100vh;
         }
         .form-container {
             max-width: 800px;
             margin: auto;
+            background-color: rgba(255, 255, 255, 0.7); 
+            padding: 20px; 
+            border: 4px solid #dc0fc4;
         }
         .nes-field {
             margin-bottom: 70px; 
@@ -30,7 +37,7 @@
 
         /* Custom CSS */
         .nes-radio:checked + span {
-            background-color: #000000; 
+            background-color: #dc0fc4; 
             color: #fff; 
         }
 
@@ -39,9 +46,9 @@
         }
 
         label.title {
-            background-color: #000000 !important; /* Adjust background color */
-            color: #ffffff; /* Adjust text color */
-            display: inline-block; /* Ensure it behaves like a block with padding */
+            background-color: #dc0fc4 !important;
+            color: #000000; 
+            display: inline-block; 
         }
     </style>
 </head>
@@ -197,19 +204,6 @@
     <!-- Submit Button -->
     <button type="submit" class="nes-btn is-primary" onclick="validateForm(event)">Submit</button>
 </div>
-
-<!-- Dialog -->
-<section>
-    <dialog class="nes-dialog" id="dialog-default">
-      <form method="dialog">
-        <p class="title">Dialog</p>
-        <p>Form submitted successfully!</p>
-        <menu class="dialog-menu">
-          <button class="nes-btn">Close</button>
-        </menu>
-      </form>
-    </dialog>
-  </section>
 
 <script>
 function validateForm(event) {
